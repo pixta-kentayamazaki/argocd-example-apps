@@ -1,0 +1,7 @@
+# overlays/prod/patch.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: guestbook
+spec:
+  replicas: 2
