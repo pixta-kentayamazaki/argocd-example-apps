@@ -5,9 +5,8 @@
 replicaCount: 1
 
 image:
-  repository: gcr.io/google-samples/gb-frontend
-  tag: v4
-  pullPolicy: IfNotPresent
+  repository: ghcr.io/argoproj/argocd-example-apps/guestbook
+  tag: 0.1
 
 containerPort: 80
 
