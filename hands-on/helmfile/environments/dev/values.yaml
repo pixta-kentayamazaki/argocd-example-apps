@@ -1,0 +1,11 @@
+# 開発環境の設定
+guestbook:
+  replicaCount: 1
+  service:
+    type: ClusterIP
+
+nginx:
+  replicaCount: 1
+
+redis:
+  replicaCount: 1

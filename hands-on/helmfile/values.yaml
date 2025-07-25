@@ -1,0 +1,36 @@
+# 共通の設定値
+guestbook:
+  image:
+    repository: gcr.io/heptio-images/ks-guestbook-demo
+    tag: 0.1
+  resources:
+    limits:
+      cpu: 100m
+      memory: 128Mi
+    requests:
+      cpu: 50m
+      memory: 64Mi
+
+nginx:
+  image:
+    repository: nginx
+    tag: 1.21.6
+  resources:
+    limits:
+      cpu: 100m
+      memory: 128Mi
+    requests:
+      cpu: 50m
+      memory: 64Mi
+
+redis:
+  image:
+    repository: redis
+    tag: 6.2.6
+  resources:
+    limits:
+      cpu: 100m
+      memory: 128Mi
+    requests:
+      cpu: 50m
+      memory: 64Mi

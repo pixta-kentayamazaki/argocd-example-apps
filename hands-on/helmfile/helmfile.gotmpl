@@ -1,0 +1,52 @@
+# Helmfile基本設定
+repositories:
+  - name: stable
+    url: https://charts.helm.sh/stable
+
+# 環境設定
+environments:
+  dev:
+    values:
+      - environments/dev/values.yaml
+  staging:
+    values:
+      - environments/staging/values.yaml
+  prod:
+    values:
+      - environments/prod/values.yaml
+---
+# リリース設定
+releases:
+  # 既存のguestbookアプリケーション
+  - name: guestbook
+    namespace: {{ .Environment.Name }}
+    chart: ../../helm-guestbook
+    values:
+      - values.yaml
+    set:
+      - name: replicaCount
+        value: {{ .Environment.Values.guestbook.replicaCount }}
+      - name: service.type
+        value: {{ .Environment.Values.guestbook.service.type }}
+
+  # Nginx Webサーバー
+  - name: nginx
+    namespace: {{ .Environment.Name }}
+    chart: ../nginx-chart
+    values:
+      - values.yaml
+    set:
+      - name: replicaCount
+        value: {{ .Environment.Values.nginx.replicaCount }}
+    needs:
+      - {{ .Environment.Name }}/guestbook
+
+  # Redisデータベース
+  - name: redis
+    namespace: {{ .Environment.Name }}
+    chart: ./charts/redis
+    values:
+      - values.yaml
+    set:
+      - name: replicaCount
+        value: {{ .Environment.Values.redis.replicaCount }}

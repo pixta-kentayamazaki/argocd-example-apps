@@ -1,0 +1,13 @@
+# 本番環境の設定
+guestbook:
+  replicaCount: 3
+  service:
+    type: LoadBalancer
+
+nginx:
+  replicaCount: 3
+
+redis:
+  replicaCount: 3
+  persistence:
+    enabled: true

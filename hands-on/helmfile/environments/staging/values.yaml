@@ -1,0 +1,11 @@
+# ステージング環境の設定
+guestbook:
+  replicaCount: 2
+  service:
+    type: ClusterIP
+
+nginx:
+  replicaCount: 2
+
+redis:
+  replicaCount: 2
